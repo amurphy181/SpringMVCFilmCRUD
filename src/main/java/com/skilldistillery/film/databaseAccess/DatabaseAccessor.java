@@ -4,10 +4,7 @@ import java.sql.SQLException;
 import com.skilldistillery.film.entities.*;
 import java.util.List;
 
-import com.skilldistillery.filmquery.entities.Actor;
-import com.skilldistillery.filmquery.entities.Film;
-import com.skilldistillery.filmquery.entities.FilmInventory;
-import com.skilldistillery.filmquery.entities.Language;
+import com.skilldistillery.film.entities.*;
 
 public interface DatabaseAccessor{
   public Film getFilmById(int filmId) throws SQLException;
