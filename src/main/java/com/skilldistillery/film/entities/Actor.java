@@ -1,21 +1,26 @@
 package com.skilldistillery.film.entities;
 
+import java.util.List;
+
 public class Actor {
-	private Integer id;
+	private int id;
 	private String firstName;
 	private String lastName;
 	
-	public Actor(Integer id, String firstName, String lastName) {
+	public Actor(int id, String firstName, String lastName) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
 	
-	public Integer getId() {
+	public Actor() {
+	}
+	
+	public int getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getFirstName() {
@@ -30,16 +35,16 @@ public class Actor {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + id;
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		return result;
 	}
-	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -54,10 +59,7 @@ public class Actor {
 				return false;
 		} else if (!firstName.equals(other.firstName))
 			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
+		if (id != other.id)
 			return false;
 		if (lastName == null) {
 			if (other.lastName != null)
@@ -67,9 +69,24 @@ public class Actor {
 		return true;
 	}
 	
+	public StringBuilder actorsListed(List<Actor> actors) {
+		StringBuilder builder = new StringBuilder();
+		List<Actor> tempActors = actors;
+		for (Actor actor : tempActors) {
+			String firstName = actor.getFirstName();
+			String lastName = actor.getLastName();
+			builder.append("Actors:\n\t").append(firstName + " " + lastName + "\n\t");
+		}
+		return builder;
+	}
+	
 	@Override
 	public String toString() {
-		return "Actor [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append(firstName).append(" ")
+				.append(lastName + "\n");
+		return builder.toString();
 	}
-
+	
+	
 }

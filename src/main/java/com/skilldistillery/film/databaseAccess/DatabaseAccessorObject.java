@@ -1,6 +1,7 @@
 package com.skilldistillery.film.databaseAccess;
 
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,10 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.skilldistillery.filmquery.entities.Actor;
-import com.skilldistillery.filmquery.entities.Film;
-import com.skilldistillery.filmquery.entities.FilmInventory;
-import com.skilldistillery.filmquery.entities.Language;
+import com.skilldistillery.film.entities.*;
 
 public class DatabaseAccessorObject implements DatabaseAccessor {
 	private static final String URL = "jdbc:mysql://localhost:3306/sdvid";
