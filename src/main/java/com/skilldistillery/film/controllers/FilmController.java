@@ -20,6 +20,7 @@ public class FilmController {
 	
 	@RequestMapping(path="searchFilm.do", method=RequestMethod.GET)
 	public ModelAndView filmDetails() {
+		System.out.println("film details");
 		Film f = new Film();
 		ModelAndView mv = new ModelAndView("WEB-INF/searchFilm.jsp", "film", f);
 		return mv;
@@ -34,6 +35,7 @@ public class FilmController {
 		try {
 			filmDetails = db.getAllFilmDetails(filmId);
 			db.addFilm(filmDetails);
+			System.out.println(filmDetails);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

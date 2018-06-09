@@ -11,7 +11,7 @@
 <body>
 
 	<h2>Search Film stub</h2>
-	<form:form action="searchFilm.do" method="POST" modelAttribute="user">
+	<form:form action="searchFilm.do" method="POST" modelAttribute="film">
 		<form:label path="filmId">Film ID:</form:label>
 		<form:input path="filmId" />
 
