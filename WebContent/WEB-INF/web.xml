@@ -8,14 +8,14 @@
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
 
-	<!--  set servlet name to searches for lack of better thoughts. Feel free to change! -->
+	<!--  set servlet name to film for lack of better thoughts. Feel free to change! -->
 	
 	<servlet>
-		<servlet-name>searches</servlet-name>
+		<servlet-name>/spring/film</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>searches</servlet-name>
+		<servlet-name>/spring/film</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 

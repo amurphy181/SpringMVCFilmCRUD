@@ -10,6 +10,12 @@
 </head>
 <body>
 
-<h2>Search Film stub</h2>
+	<h2>Search Film stub</h2>
+	<form:form action="searchFilm.do" method="POST" modelAttribute="user">
+		<form:label path="filmId">Film ID:</form:label>
+		<form:input path="filmId" />
+
+		<input type="submit" value="filmID" />
+	</form:form>
 </body>
 </html>

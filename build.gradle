@@ -38,6 +38,10 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     testCompile group: 'org.springframework', name: 'spring-test', version:"${springVersion}"
 }
+eclipse.project  {
+        natures 'org.springframework.ide.eclipse.core.springnature', 
+                'org.eclipse.buildship.core.gradleprojectnature'
+}
 
 eclipse {
   classpath {

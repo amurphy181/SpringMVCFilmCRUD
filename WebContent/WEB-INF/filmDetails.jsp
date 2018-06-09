@@ -10,6 +10,18 @@
 </head>
 <body>
 
-<h2>Film Details stub</h2>
+	<h2>Film Details stub</h2>
+	<h3>${film.title }</h3>
+	<table>
+		<tr>
+			<td>${film.releaseYear }</td>
+		</tr>
+		<tr>
+			<td>${film.rating }</td>
+		</tr>
+	</table>
+
+	
+
 </body>
 </html>
