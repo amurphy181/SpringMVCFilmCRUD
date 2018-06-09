@@ -1,8 +1,9 @@
 package com.skilldistillery.film.entities;
 
 import java.sql.SQLException;
-import com.skilldistillery.film.databaseAccess.*;
 import java.util.List;
+
+import com.skilldistillery.film.data.*;
 
 
 public class Film {
@@ -19,7 +20,7 @@ public class Film {
 	private String rating;
 	private String specialFeatures;
 	private List<Actor> actors;
-	private Language language;
+	private String language;
 	private StringBuilder actorList;
 	private String categories;
 
@@ -34,7 +35,7 @@ public class Film {
 		return filmCategory;
 	}
 
-	public Film(String title, int releaseYear, String description, String rating, Language language, List<Actor> actors)
+	public Film(String title, int releaseYear, String description, String rating, String language, List<Actor> actors)
 			throws SQLException {
 		super();
 		this.title = title;
@@ -190,7 +191,7 @@ public class Film {
 
 	public Film(int id, String title, String description, int releaseYear, int languageId, int rentalDuration,
 			double rentalRate, int length, double replacementCost, String rating, String specialFeatures,
-			Language language, List<Actor> actors) {
+			String language, List<Actor> actors) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -292,7 +293,7 @@ public class Film {
 
 	public String byIdToString(Film film) { // title, year, rating, and description are displayed.
 		StringBuilder builder = new StringBuilder();
-		Language language = film.language;
+		String language = film.language;
 		builder.append("Film title = ").append(title).append("\nRelease year: ").append(releaseYear)
 				.append("\nRating: ").append(rating).append("\nDescription: ").append(description)
 				.append("\nLanguage: " + language + "\n");
@@ -311,7 +312,7 @@ public class Film {
 			int releaseYear = film.getReleaseYear();
 			String rating = film.getRating();
 			String description = film.getDescription();
-			Language language = film.language;
+			String language = film.language;
 			List<Actor> actors = actorsInFilm.getActorsByFilmId(filmId);
 			actorList = actor.actorsListed(actors);
 

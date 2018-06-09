@@ -1,4 +1,4 @@
-package com.skilldistillery.film.databaseAccess;
+package com.skilldistillery.film.data;
 
 import java.sql.SQLException;
 import com.skilldistillery.film.entities.*;
@@ -11,7 +11,7 @@ public interface DatabaseAccessor{
   public Actor getActorById(int actorId) throws SQLException;
   public List<Actor> getActorsByFilmId(int filmId) throws SQLException;
   public List<Film> getFilmBySearchTerm(String searchTerm) throws SQLException;
-  public Language getLanguageOfFilm(int filmId) throws SQLException;
+  public String getFilmLanguage(int filmId) throws SQLException;
   public Film getAllFilmDetails(int filmId) throws SQLException;
   public Film getFilmCategories(int filmId) throws SQLException;
   public List<FilmInventory> getFilmInventory(int filmId) throws SQLException;

@@ -1,4 +1,4 @@
-package com.skilldistillery.film.databaseAccess;
+package com.skilldistillery.film.data;
 
 import java.sql.Connection;
 
@@ -10,10 +10,22 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.skilldistillery.film.entities.*;
 
+@Component
 public class DatabaseAccessorObject implements DatabaseAccessor {
 	private static final String URL = "jdbc:mysql://localhost:3306/sdvid";
+	
+	static {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            System.err.println("Error loading mySql driver");
+            e.printStackTrace();
+        }
+    }
 
 	@Override
 	public List<Film> getFilmBySearchTerm(String searchTerm) throws SQLException {
@@ -30,7 +42,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			int releaseYear = searchResult.getInt(3);
 			String rating = searchResult.getString(4);
 			String description = searchResult.getString(5);
-			Language language = getLanguageOfFilm(id);
+			String language = getFilmLanguage(id);
 			List<Actor> actors = getActorsByFilmId(id);
 			StringBuilder actorList = actor.actorsListed(actors);
 
@@ -69,7 +81,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			int length = filmResult.getInt(9);
 			double replacementCost = filmResult.getDouble(10);
 			String specialFeatures = filmResult.getString(11);
-			Language language = getLanguageOfFilm(id);
+			String language = getFilmLanguage(id);
 			List<Actor> actors = getActorsByFilmId(id);
 			// StringBuilder actorList = actor.actorsListed(actors);
 			filmFull = new Film(id, title, description, releaseYear, languageId, rentalDuration, rentalRate, length,
@@ -131,20 +143,23 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	}
 
 	@Override
-	public Language getLanguageOfFilm(int filmId) throws SQLException {
-		Language language = null;
-		Connection conn = DriverManager.getConnection(URL, "student", "student");
-		String sql = "SELECT l.name FROM film f JOIN language l on l.id = f.language_id WHERE f.id = ?";
-		PreparedStatement stmt = conn.prepareStatement(sql);
-		stmt.setInt(1, filmId);
-		ResultSet rs = stmt.executeQuery();
-		if (rs.next()) {
-			language = new Language();
-			language.setLanguage(rs.getString(1));
+	public String getFilmLanguage(int filmId) throws SQLException {
+		StringBuilder sql = new StringBuilder("Select l.name from language l join film f on l.id = f.language_id ");
+		sql.append(" where f.id = ? ");
+
+		String language = null;
+
+		try (Connection conn = DriverManager.getConnection(URL, "student", "student");
+				PreparedStatement stmt = conn.prepareStatement(sql.toString())) {
+			// bind
+			stmt.setInt(1, filmId);
+
+			try (ResultSet rs = stmt.executeQuery()) {
+				if (rs.next()) {
+					language = rs.getString(1); // l.name
+				}
+			}
 		}
-		rs.close();
-		stmt.close();
-		conn.close();
 		return language;
 	}
 

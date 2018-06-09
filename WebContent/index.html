@@ -5,12 +5,26 @@
 <title>Film</title>
 </head>
 <body>
-<a href="filmDetails.html">See details by Film ID</a><br/>
-<a href="addFilm.html">Add a new film</a><br/>
-<a href="deleteFilm.html">Delete film</a><br/>
-<a href="editFilm.html">Edit film details</a><br/>
-<a href="searchFilm.html">Search for film by keyword</a><br/>
-<a href="addActor.html">Add an actor to the database</a><br/>
-<a href="updateActor.html">Update or delete an actor</a><br/>
+	<form action="filmDetails.do" method="GET">
+		<input type="submit" value="Film Details" />
+	</form>
+	<form action="addFilm.do" method="GET">
+		<input type="submit" value="Add Film" />
+	</form>
+	<form action="deleteFilm.do" method="GET">
+		<input type="submit" value="Delete Film" />
+	</form>
+	<form action="editFilm.do" method="GET">
+		<input type="submit" value="Edit Film" />
+	</form>
+	<form action="searchFilm.do" method="GET">
+		<input type="submit" value="Search Film" />
+	</form>
+	<form action="addActor.do" method="GET">
+		<input type="submit" value="Add Actor" />
+	</form>
+	<form action="updateActor.do" method="GET">
+		<input type="submit" value="Update Actor" />
+	</form>
 </body>
 </html>
