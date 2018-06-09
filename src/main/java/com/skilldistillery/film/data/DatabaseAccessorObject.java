@@ -20,19 +20,19 @@ import com.skilldistillery.film.entities.*;
 public class DatabaseAccessorObject implements DatabaseAccessor {
 	private static final String URL = "jdbc:mysql://localhost:3306/sdvid";
 	private Map<String, Film> films = new HashMap<>();
-	
+
 	public DatabaseAccessorObject() {
 		this.films.put("default", new Film());
 	}
-	
+
 	static {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            System.err.println("Error loading mySql driver");
-            e.printStackTrace();
-        }
-    }
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			System.err.println("Error loading mySql driver");
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	public List<Film> getFilmBySearchTerm(String searchTerm) throws SQLException {
@@ -252,8 +252,8 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		try {
 			conn = DriverManager.getConnection(URL, "student", "student");
 			conn.setAutoCommit(false); // START TRANSACTION
-			String sql = "INSERT INTO film (title, description, release_year, language_id, rental_duration, rental_rate, length, replacement_cost, rating, special_features) " 
-			                    + " VALUES (?,?,?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO film (title, description, release_year, language_id, rental_duration, rental_rate, length, replacement_cost, rating, special_features) "
+					+ " VALUES (?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, film.getTitle());
 			stmt.setString(2, film.getDescription());
@@ -265,7 +265,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			stmt.setDouble(8, film.getReplacementCost());
 			stmt.setString(9, film.getRating());
 			stmt.setString(10, film.getSpecialFeatures());
-			
+
 			int updateCount = stmt.executeUpdate();
 			if (updateCount == 1) {
 				ResultSet keys = stmt.getGeneratedKeys();
@@ -298,38 +298,38 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		try {
 			conn = DriverManager.getConnection(URL, "student", "student");
 			conn.setAutoCommit(false); // START TRANSACTION
-			
+
 			// delete the child from film_actor
 			String sql = "DELETE FROM film_actor WHERE film_id = ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, film.getId());
 			int updateCount = stmt.executeUpdate();
-			
+
 			// delete the child from film_category
 			sql = "DELETE FROM film_category WHERE film_id = ?";
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, film.getId());
 			updateCount = stmt.executeUpdate();
-			
+
 			// delete the child from rental through inventory_item
 			sql = "DELETE r FROM rental r JOIN inventory_item i ON i.id = r.inventory_id WHERE i.film_id = ?";
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, film.getId());
 			updateCount = stmt.executeUpdate();
-			
+
 			// delete the child from inventory_item
 			sql = "DELETE FROM inventory_item WHERE film_id = ?";
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, film.getId());
 			updateCount = stmt.executeUpdate();
-			
+
 			// finally, delete the film from the parent class of "film"
 			sql = "DELETE FROM film WHERE id = ?";
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, film.getId());
 			updateCount = stmt.executeUpdate();
 			conn.commit(); // COMMIT TRANSACTION
-			
+
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 			if (conn != null) {
@@ -380,4 +380,70 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		return actor;
 	}
 
+	@Override
+	public Actor deleteActor(Actor actor) throws SQLException {
+		String sql = "DELETE FROM actor WHERE actor.id = ?";
+		Connection conn = DriverManager.getConnection(URL, "student", "student");
+
+		try {
+			conn.setAutoCommit(false);
+			PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			stmt.setInt(1, actor.getId());
+			if (stmt.executeUpdate() > 0) {
+				conn.commit();
+			} else {
+				actor = null;
+				conn.rollback();
+			}
+
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+			if (conn != null) {
+				try {
+					conn.rollback();
+				} catch (SQLException sqle2) {
+					System.err.println("Error trying to rollback");
+				}
+			}
+			throw new RuntimeException("Error deleting actor " + actor);
+		}
+		conn.close();
+		return actor;
+	}
+
+	@Override
+	public Actor updateActor(Actor existingActor, Actor updatedActorProperties) throws SQLException {
+		String sql = "UPDATE actor SET  first_name = ?, last_name = ? WHERE id = ?";
+
+		Connection conn = DriverManager.getConnection(URL, "student", "student");
+		PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+		try {
+			conn.setAutoCommit(false); // START TRANSACTION
+
+			stmt.setString(1, updatedActorProperties.getFirstName());
+			stmt.setString(2, updatedActorProperties.getLastName());
+
+			if (stmt.executeUpdate() != 1) {
+				existingActor = null;
+				conn.rollback();
+			} else {
+				existingActor.setFirstName(updatedActorProperties.getFirstName());
+				existingActor.setLastName(updatedActorProperties.getLastName());
+
+				conn.commit();
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+			if (conn != null) {
+				try {
+					conn.rollback();
+				} catch (SQLException sqle2) {
+					System.err.println("Error trying to rollback");
+				}
+			}
+			throw new RuntimeException("Error updating actor " + existingActor);
+		}
+		conn.close();
+		return existingActor;
+	}
 }
