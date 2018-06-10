@@ -20,12 +20,12 @@ import com.skilldistillery.film.entities.*;
 @Component
 public class DatabaseAccessorObject implements DatabaseAccessor {
 	private static final String URL = "jdbc:mysql://localhost:3306/sdvid";
-	private Map<String, Film> films = new HashMap<>();
-
-	@Autowired
-	public DatabaseAccessorObject() {
-		this.films.put("default", new Film());
-	}
+//	private Map<String, Film> films = new HashMap<>();
+//
+//	
+//	public DatabaseAccessorObject() {
+//		this.films.put("default", new Film());
+//	}
 
 	static {
 		try {
