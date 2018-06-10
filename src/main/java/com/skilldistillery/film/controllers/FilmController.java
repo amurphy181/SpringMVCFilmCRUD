@@ -18,24 +18,14 @@ public class FilmController {
 	@Autowired
 	private DatabaseAccessorObject db;
 	
-	@RequestMapping(path="searchFilm.do", method=RequestMethod.GET)
-	public ModelAndView filmDetails() {
-		System.out.println("film details");
-		Film f = new Film();
-		ModelAndView mv = new ModelAndView("WEB-INF/searchFilm.jsp", "film", f);
-		return mv;
-	}
-	
 	@RequestMapping(path="searchFilm.do", method=RequestMethod.POST)
-	public ModelAndView doFilmDetails(Film film) {
+	public ModelAndView searchFilmId(int id) {
 		ModelAndView mv = new ModelAndView();
-		int filmId = film.getId();
 		
 		Film filmDetails = null;
 		try {
-			filmDetails = db.getAllFilmDetails(filmId);
-			db.addFilm(filmDetails);
-			System.out.println(filmDetails);
+			filmDetails = db.getFilmById(id);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -17,7 +17,7 @@ public class ActorController {
 	private DatabaseAccessorObject db;
 	
 	@RequestMapping(path = "addActor.do", method = RequestMethod.POST)
-	public ModelAndView createState(Actor actor, RedirectAttributes redir) {
+	public ModelAndView createActor(Actor actor, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("redirect:actorAdded.do");
 		try {
