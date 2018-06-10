@@ -4,6 +4,8 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
 
+
+
 	<display-name>MVCFilm</display-name>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -11,23 +13,25 @@
 		</param-value>
 	</context-param>
 
-	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-	</welcome-file-list>
-
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener
 		</listener-class>
 	</listener>
-
+	
 	<servlet>
 		<servlet-name>film</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet
 		</servlet-class>
-
+		<load-on-startup>1</load-on-startup>
+		
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>film</servlet-name>
-		<url-pattern>*.do</url-pattern>
+		<url-pattern>"WEB-INF/spring/*.do"</url-pattern>
 	</servlet-mapping>
+	
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+
 </web-app>
