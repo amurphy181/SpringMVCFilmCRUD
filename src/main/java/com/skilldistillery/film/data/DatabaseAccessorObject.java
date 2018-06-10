@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.skilldistillery.film.entities.*;
@@ -21,6 +22,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	private static final String URL = "jdbc:mysql://localhost:3306/sdvid";
 	private Map<String, Film> films = new HashMap<>();
 
+	@Autowired
 	public DatabaseAccessorObject() {
 		this.films.put("default", new Film());
 	}

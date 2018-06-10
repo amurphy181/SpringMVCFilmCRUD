@@ -5,6 +5,10 @@
 	id="WebApp_ID" version="3.0">
 
 	<display-name>MVCFilm</display-name>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/MVCFilmSite/WebContent/WEB-INF/spring/film-servlet.xml</param-value>
+	</context-param>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
