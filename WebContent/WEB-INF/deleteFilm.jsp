@@ -10,6 +10,15 @@
 </head>
 <body>
 
-<h2>Delete Film stub</h2>
+<h2>Delete Film</h2>
+<form:form action="deleteFilm.do" method="POST" modelAttribute="film">
+		
+		<form:label path="id">Film ID:</form:label>
+		<form:input path="id" />
+		<br />
+		
+		
+		<input type="submit" value="Submit" />
+	</form:form>
 </body>
 </html>

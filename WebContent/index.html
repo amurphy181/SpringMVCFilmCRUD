@@ -16,7 +16,9 @@
 	<form action="addFilm.do" method="GET">
 		<input type="submit" value="Add Film" />
 	</form>
-	<form action="deleteFilm.do" method="GET">
+	<form action="deleteFilm.do" method="POST">
+		Delete a Film by ID:
+		<input type="text" name="id"/>
 		<input type="submit" value="Delete Film" />
 	</form>
 	<form action="editFilm.do" method="GET">
