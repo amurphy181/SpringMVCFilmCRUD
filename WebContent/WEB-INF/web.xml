@@ -20,7 +20,7 @@
 		</param-value>
 	</context-param>
 
-
+	<!-- children of the app-context.xml configuration file -->
 	<servlet>
 		<servlet-name>film</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet

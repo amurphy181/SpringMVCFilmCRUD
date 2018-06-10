@@ -35,5 +35,31 @@ public class FilmController {
 		return mv;
 	}
 	
+	@RequestMapping(path="addFilm.do", method=RequestMethod.GET)
+	public ModelAndView addFilmToDatabase(int id) {
+		ModelAndView mv = new ModelAndView();
+		Film f = new Film();
+		mv.addObject("film", f);
+		mv.setViewName("WEB-INF/addFilm.jsp");
+		return mv;
+		}
 	
-}
+	@RequestMapping(path="register.do", method=RequestMethod.POST)
+	public String addingFilmProper(Film f) {
+		
+		try {
+			db.addFilm(f);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	  
+	  
+		return "WEB-INF/addFilm.jsp";
+	}
+	}
+	
+	
+	
+	
+
