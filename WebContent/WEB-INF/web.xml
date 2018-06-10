@@ -27,7 +27,7 @@
 		</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/MVCFilmSite/WebContent/WEB-INF/spring/film-servlet.xml
+			<param-value>WEB-INF/spring/film-servlet.xml
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
@@ -37,7 +37,7 @@
 		<servlet-name>film</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
- 
+
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
