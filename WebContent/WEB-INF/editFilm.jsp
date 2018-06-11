@@ -10,28 +10,44 @@
 </head>
 <body>
 
-<h2>Edit Film</h2>
-<h2>
-	<h3>${film.id }</h3>
-	<table>
-		<tr> 
-			<form:label path="title">Title:</form:label>
-			<form:input path="title"><td>${film.title }</td></form:input>
-		</tr>
-		<tr>
-			<form:label path="releaseYear">Release Year:</form:label>
-			<form:input path="releaseYear"><td>${film.releaseYear }</td></form:input>
-		</tr>
-		<tr>
-			
-			<form:label path="rating">Rating:</form:label>
-			<form:input path="rating"><td>${film.rating }</td></form:input>
-		</tr>
-		<tr>
-			<form:label path="description">Description:</form:label>
-			<form:input path="description"><td>${film.description }</td></form:input>
-		</tr>
-	</table>
+	<h2>Edit Film</h2>
+	<h2>
+		<h3>${film.id }</h3>
+		
+		<form:form action="editFilm.do" method="POST" modelAttribute="film">
 
+			<form:label path="title">Title:</form:label>
+			<form:input path="title" />
+			<br />
+			<form:label path="description">Description:</form:label>
+			<form:input path="description" />
+			<br />
+			<form:label path="releaseYear">Release Year:</form:label>
+			<form:input path="releaseYear" />
+			<br />
+			<form:label path="languageId">Language ID:</form:label>
+			<form:input path="languageId" />
+			<br />
+			<form:label path="rentalDuration">Rental Duration:</form:label>
+			<form:input path="rentalDuration" />
+			<br />
+			<form:label path="rentalRate">Rental Rate:</form:label>
+			<form:input path="rentalRate" />
+			<br />
+			<form:label path="length">Length:</form:label>
+			<form:input path="length" />
+			<br />
+			<form:label path="replacementCost">Replacement Cost:</form:label>
+			<form:input path="replacementCost" />
+			<br />
+			<form:label path="rating">Rating:</form:label>
+			<form:input path="rating" />
+			<br />
+			<form:label path="specialFeatures">Special Features:</form:label>
+			<form:input path="specialFeatures" />
+			<br />
+
+			<input type="submit" value="Submit" />
+		</form:form>
 </body>
 </html>

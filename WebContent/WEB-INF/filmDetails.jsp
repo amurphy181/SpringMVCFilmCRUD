@@ -29,8 +29,13 @@
 					<td>Special Features: ${film.specialFeatures }</td>
 				</tr>
 			</table>
+
+
 			<form action="editFilm.do" method="GET">
 				<input type="submit" value="Edit Film" />
+			</form>
+			<form action="deleteFilm.do" method="GET">
+				<input type="submit" value="Delete this Film" />
 			</form>
 		</c:when>
 		<c:when test="${film == null }">

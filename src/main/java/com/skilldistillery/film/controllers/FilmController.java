@@ -33,7 +33,9 @@ public class FilmController {
 		mv.setViewName("WEB-INF/filmDetails.jsp");
 		return mv;
 	}
-
+	
+	// Adding film section
+	
 	@RequestMapping(path = "addFilm.do", method = RequestMethod.GET)
 	public ModelAndView addFilmToDatabase(Film film) {
 		ModelAndView mv = new ModelAndView();
@@ -44,15 +46,38 @@ public class FilmController {
 
 	@RequestMapping(path = "addFilm.do", method = RequestMethod.POST)
 	public String addFilm(Film film) {
-//		ModelAndView mv = new ModelAndView();
 
 
 		db.addFilm(film);
-//		mv.addObject("film", film);
-//		mv.setViewName("WEB-INF/filmDetails.jsp");
 		return "WEB-INF/filmDetails.jsp";
 	}
+	
+	// Edit film section
+	
+	@RequestMapping(path = "editFilm.do", method = RequestMethod.GET)
+	public ModelAndView updateFilmInDatabase(Film film) {
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject(film);
+		mv.setViewName("WEB-INF/editFilm.jsp");
+		return mv;
+	}
+	
+	@RequestMapping(path = "editFilm.do", method = RequestMethod.POST)
+	public String updateFilm(Film film) {
+		
+		
+		db.addFilm(film);
+		return "WEB-INF/filmDetails.jsp";
+	}
+	
+	// Delete film section
+	@RequestMapping(path = "deleteFilm.do", method = RequestMethod.GET)
+	public ModelAndView deleteFilm(Film film) {
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("WEB-INF/filmDetails.jsp");
+		return mv;
+	}
 
-	// @RequestMapping(path = "editFilm.do", method = RequestMethod.GET)
-	// public ModelAndView editFilm(@RequestParam(name = "filmId"))
 }
