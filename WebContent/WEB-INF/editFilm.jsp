@@ -13,7 +13,7 @@
 	<h2>Edit Film</h2>
 	<h2>
 		<h3>${film.id }</h3>
-		
+
 		<form:form action="editFilm.do" method="POST" modelAttribute="film">
 
 			<form:label path="title">Title:</form:label>
@@ -49,5 +49,9 @@
 
 			<input type="submit" value="Submit" />
 		</form:form>
+
+		<h3>
+			<a href="index.html">Send me back to the main menu!</a>
+		</h3>
 </body>
 </html>

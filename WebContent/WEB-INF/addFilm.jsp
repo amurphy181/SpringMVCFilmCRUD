@@ -46,5 +46,9 @@
 		
 		<input type="submit" value="Submit" />
 	</form:form>
+	
+	<h3>
+		<a href="index.html">Send me back to the main menu!</a>
+	</h3>
 </body>
 </html>
