@@ -22,6 +22,9 @@
 		<form:label path="releaseYear">Release Year:</form:label>
 		<form:input path="releaseYear" />
 		<br />
+		<form:label path="languageId">Language ID:</form:label>
+		<form:input path="languageId" />
+		<br />
 		<form:label path="rentalDuration">Rental Duration:</form:label>
 		<form:input path="rentalDuration" />
 		<br />

@@ -19,7 +19,12 @@
 		<tr>
 			<td>${film.rating }</td>
 		</tr>
+		<tr>
+			<td>${film.description }</td>
+		</tr>
 	</table>
+	
+	<h3><a href="index.html">Send me to the main menu!</a></h3>
 
 	
 

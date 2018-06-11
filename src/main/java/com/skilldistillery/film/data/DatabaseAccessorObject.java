@@ -20,12 +20,12 @@ import com.skilldistillery.film.entities.*;
 @Component
 public class DatabaseAccessorObject implements DatabaseAccessor {
 	private static final String URL = "jdbc:mysql://localhost:3306/sdvid";
-//	private Map<String, Film> films = new HashMap<>();
-//
-//	
-//	public DatabaseAccessorObject() {
-//		this.films.put("default", new Film());
-//	}
+	// private Map<String, Film> films = new HashMap<>();
+	//
+	//
+	// public DatabaseAccessorObject() {
+	// this.films.put("default", new Film());
+	// }
 
 	static {
 		try {
@@ -249,13 +249,14 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	}
 
 	@Override
-	public Film addFilm(Film film) throws SQLException {
+	public Film addFilm(Film film) {
 		Connection conn = null;
+		// System.out.println();
 		try {
 			conn = DriverManager.getConnection(URL, "student", "student");
 			conn.setAutoCommit(false); // START TRANSACTION
-			String sql = "INSERT INTO film (title, description, release_year, language_id, rental_duration, rental_rate, length, replacement_cost, rating, special_features) "
-					+ " VALUES (?,?,?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO film(title, description, release_year, language_id, rental_duration, rental_rate, length, replacement_cost, rating, special_features) "
+					+ "values (?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, film.getTitle());
 			stmt.setString(2, film.getDescription());
@@ -276,6 +277,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 					film.setId(newFilmId);
 
 				}
+				System.out.println("Your film's name is: " + film.getTitle());
 			} else {
 				film = null;
 			}
