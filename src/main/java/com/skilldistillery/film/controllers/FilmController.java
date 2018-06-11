@@ -63,6 +63,8 @@ public class FilmController {
 		return mv;
 	}
 	
+	// use a RequestParam inside of the method here to insert the value of the requested
+	// film from the film details
 	@RequestMapping(path = "editFilm.do", method = RequestMethod.POST)
 	public String updateFilm(Film film) {
 		
