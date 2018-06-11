@@ -11,33 +11,38 @@
 <body>
 
 	<h2>Film Details stub</h2>
-	
-	<c:choose>
-	<c:when test="${film != null }">
-	<h3>${film.title }</h3>
-	<table>
-		<tr>
-			<td>Released: ${film.releaseYear }</td>
-		</tr>
-		<tr>
-			<td>Summary: ${film.description }</td>
-		</tr>
-		<tr>
-			<td>Rating: ${film.rating }</td>
-		</tr>
-		<tr>
-			<td>Special Features: ${film.specialFeatures }</td>
-		</tr>
-	</table>
-	</c:when>
-	<c:when test="${film == null }">
-	<p>There is no film with that ID in the database.</p>
-	</c:when>
-	</c:choose>
-	
-	<h3><a href="index.html">Send me back to the main menu!</a></h3>
 
-	
+	<c:choose>
+		<c:when test="${film != null }">
+			<h3>${film.title }</h3>
+			<table>
+				<tr>
+					<td>Released: ${film.releaseYear }</td>
+				</tr>
+				<tr>
+					<td>Summary: ${film.description }</td>
+				</tr>
+				<tr>
+					<td>Rating: ${film.rating }</td>
+				</tr>
+				<tr>
+					<td>Special Features: ${film.specialFeatures }</td>
+				</tr>
+			</table>
+			<form action="editFilm.do" method="GET">
+				<input type="submit" value="Edit Film" />
+			</form>
+		</c:when>
+		<c:when test="${film == null }">
+			<p>There is no film with that ID in the database.</p>
+		</c:when>
+	</c:choose>
+
+	<h3>
+		<a href="index.html">Send me back to the main menu!</a>
+	</h3>
+
+
 
 </body>
 </html>
