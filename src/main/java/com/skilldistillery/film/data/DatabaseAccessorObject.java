@@ -68,7 +68,6 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	@Override
 	// title, year, rating, and description are displayed when this is returned
 	public Film getFilmById(int filmId) throws SQLException {
-		Film film = null;
 		Film filmFull = null;
 		Connection conn = DriverManager.getConnection(URL, "student", "student");
 		String sql = "SELECT id, title, release_year, rating, description, language_id, rental_duration,"
